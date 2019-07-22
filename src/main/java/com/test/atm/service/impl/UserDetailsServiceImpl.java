@@ -17,6 +17,7 @@ import static com.test.atm.model.Role.CLIENT;
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService {
     private static final String INVALID_MSG = "Wrong login or password!!!";
+    private static final String ROLE_PREFIX = "ROLE_";
 
     private final UserRepository userRepository;
 
@@ -38,7 +39,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
     private Set<? extends GrantedAuthority> getAuthority() {
         Set<SimpleGrantedAuthority> roles = new HashSet<>();
-        roles.add(new SimpleGrantedAuthority(CLIENT.getAuthority()));
+        roles.add(new SimpleGrantedAuthority(ROLE_PREFIX + CLIENT.getAuthority()));
         return roles;
     }
 }
