@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class UserRepositoryImpl implements UserRepository {
 
-    private final JdbcTemplate jdbcTemplate;
+    private  JdbcTemplate jdbcTemplate;
     private final UserMapper userMapper;
 
     public UserRepositoryImpl(JdbcTemplate jdbcTemplate, UserMapper userMapper) {
@@ -18,7 +18,13 @@ public class UserRepositoryImpl implements UserRepository {
     }
 
     @Override
-    public User findByUsername(Integer username) {
+    public User findById(Long id) {
+        String query = "SELECT * FROM users WHERE id=?";
+        return jdbcTemplate.queryForObject(query, userMapper, id);
+    }
+
+    @Override
+    public User findByUsername(Long username) {
         String query = "SELECT * FROM users WHERE username=?";
         return jdbcTemplate.queryForObject(query, userMapper, username);
     }

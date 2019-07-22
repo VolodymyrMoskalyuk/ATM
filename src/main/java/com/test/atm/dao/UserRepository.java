@@ -4,6 +4,7 @@ import com.test.atm.model.User;
 
 public interface UserRepository {
 
-   User findByUsername(Integer username);
+   User findById(Long id);
 
+   User findByUsername(Long username);
 }

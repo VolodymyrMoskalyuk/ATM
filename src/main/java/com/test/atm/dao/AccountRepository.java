@@ -4,7 +4,8 @@ import com.test.atm.model.Account;
 
 public interface AccountRepository {
 
-    void changeAmountOfMoney(Long amount);
+    void updateAccount(Account account);
 
-    Account getAccountByUsername(Integer username);
+    Account getAccountByAccountNumber(Long accountNumber);
+
 }

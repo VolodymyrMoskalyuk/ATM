@@ -9,8 +9,9 @@ import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import javax.sql.DataSource;
 
 @Configuration
-@ComponentScan
+@ComponentScan(basePackages = {"com.test.atm.dao", "com.test.atm.service"})
 public class JDBCConfig {
+
     @Bean
     public JdbcTemplate getJdbcTemplate() {
         return new JdbcTemplate(getDataSource());
@@ -19,10 +20,10 @@ public class JDBCConfig {
     @Bean
     public DataSource getDataSource() {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
-        dataSource.setUrl("jdbc:mysql://localhost:3306/test");
+        dataSource.setUrl("jdbc:mysql://localhost:3306/atm");
         dataSource.setUsername("root");
         dataSource.setPassword("root");
-        dataSource.setDriverClassName("org.mysql.Driver");
+        dataSource.setDriverClassName("com.mysql.cj.jdbc.Driver");
         return dataSource;
     }
 }
